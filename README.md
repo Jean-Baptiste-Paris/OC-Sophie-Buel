@@ -2,7 +2,7 @@
 
 Projet scolaire pour OpenClassrooms
 
-Projet n°2 du parcours Développeur Web
+Projet n°3 du parcours Développeur Web
 
 Sujet : Création d'une page web dynamique avec JavaScript
 

@@ -9,7 +9,9 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script type="module" src="travaux.js"></script>
+
 </head>
 <body>
 <header>
@@ -38,10 +40,10 @@
 	<section id="portfolio">
 		<h2>Mes Projets</h2>
 		<div class="filtres">
-			<button class="btn-tous">Tous</button>
-			<button class="btn-objets">Objets</button>
-			<button class="btn-appart">Appartements</button>
-			<button class="btn-hotels-restos">Hôtels & restaurants</button>
+			<button class="btn-filtre" id="btn-tous">Tous</button>
+			<button class="btn-filtre" id="btn-objets">Objets</button>
+			<button class="btn-filtre" id="btn-appart">Appartements</button>
+			<button class="btn-filtre" id="btn-hotels-restos">Hôtels & restaurants</button>
 		</div>
 		<div class="gallery"></div>
 	</section>

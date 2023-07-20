@@ -1,75 +1,76 @@
 // Récupération des travaux depuis l'API
-const reponse = await fetch('http://localhost:5678/api/works');
-const travaux = await reponse.json();
+const API_URL = 'http://localhost:5678/api/works';
 
-function genererTravaux(travaux) {
-    for (let i = 0 ; i < travaux.length ; i++) {
+async function getWorks() {
+    const response = await fetch(API_URL);
+    return await response.json();
+}
 
-        // Récupération du travail observé dans ce passage de la boucle
-        const travail = travaux[i];
-        // Création d’une balise dédiée à un travail
-        const travailElement = document.createElement("figure");
-        // Création du contenu de la figure
+// Récupération des éléments du DOM
+const divGallery = document.querySelector(".gallery");
+const allFilters = document.querySelectorAll(".btn-filtre");
+const filterTous = document.querySelector("#btn-tous");
+const filterObjets = document.querySelector("#btn-objets");
+const filterAppartements = document.querySelector("#btn-appart");
+const filterHotelsRestos = document.querySelector("#btn-hotels-restos");
+const filterButtons = [
+    { button: filterTous, categoryId: null },
+    { button: filterObjets, categoryId: 1 },
+    { button: filterAppartements, categoryId: 2 },
+    { button: filterHotelsRestos, categoryId: 3 }
+];
+
+let currentWorks = [];
+
+// Initialisation
+async function initGallery() {
+    currentWorks = await getWorks();
+    setupFilterListeners();
+    generateWorks(currentWorks);
+    toggle(filterTous);
+}
+
+// Affichage de la grille des travaux
+function generateWorks(works) {
+    // Reinitialisation gallerie
+    divGallery.innerHTML = "";
+    for (const work of works) {
+        // Création des balises et de leurs attributs
+        const workElement = document.createElement("figure");
         const imageElement = document.createElement("img");
-        imageElement.src = travail.imageUrl;
-        imageElement.alt = travail.title;
+        imageElement.src = work.imageUrl;
+        imageElement.alt = work.title;
         const captionElement = document.createElement("figcaption");
-        captionElement.innerText = travail.title;
+        captionElement.innerText = work.title;
 
         // Rattachement des balises
-        sectionTravaux.appendChild(travailElement);
-        travailElement.appendChild(imageElement);
-        travailElement.appendChild(captionElement);
+        divGallery.appendChild(workElement);
+        workElement.appendChild(imageElement);
+        workElement.appendChild(captionElement);
     }
 }
 
-// Récupération de l'élément du DOM qui accueillera les travaux
-const sectionTravaux = document.querySelector(".gallery");
-genererTravaux(travaux);
-
-// Récupération des filtres
-const filtres = document.querySelectorAll(".btn-filtre");
-const filtreTous = document.querySelector("#btn-tous");
-const filtreObjets = document.querySelector("#btn-objets");
-const filtreAppartements = document.querySelector("#btn-appart");
-const filtreHotelsRestos = document.querySelector("#btn-hotels-restos");
-
-// Gestion des filtres
-$(filtreTous).addClass("actif");
-
-filtreTous.addEventListener("click", function () {
-    $(filtres).removeClass("actif");
-    $(filtreTous).addClass("actif");
-    sectionTravaux.innerHTML = "";
-    genererTravaux(travaux);
-});
-
-filtreObjets.addEventListener("click", function () {
-    $(filtres).removeClass("actif");
-    $(filtreObjets).addClass("actif");
-    const travauxFiltres = travaux.filter(function (travaux) {
-        return travaux.category.id == 1
+// Initialisation des Events Listeners des filtres
+function setupFilterListeners() {
+    filterButtons.forEach(filter => {
+        filter.button.addEventListener("click", function () {
+            toggle(filter.button);
+            const filteredWorks = filter.categoryId ? filterWorksByCategory(filter.categoryId) : currentWorks;
+            generateWorks(filteredWorks)
+        });
     });
-    sectionTravaux.innerHTML = "";
-    genererTravaux(travauxFiltres);
-})
+}
 
-filtreAppartements.addEventListener("click", function () {
-    $(filtres).removeClass("actif");
-    $(filtreAppartements).addClass("actif");
-    const travauxFiltres = travaux.filter(function (travaux) {
-        return travaux.category.id == 2
-    });
-    sectionTravaux.innerHTML = "";
-    genererTravaux(travauxFiltres);
-})
+// Gestion de l'apparence des filtres
+function toggle(filterElement) {
+    allFilters.forEach(filter => filter.classList.remove("actif"));
+    filterElement.classList.add("actif");
+}
 
-filtreHotelsRestos.addEventListener("click", function () {
-    $(filtres).removeClass("actif");
-    $(filtreHotelsRestos).addClass("actif");
-    const travauxFiltres = travaux.filter(function (travaux) {
-        return travaux.category.id == 3
-    });
-    sectionTravaux.innerHTML = "";
-    genererTravaux(travauxFiltres);
-})
+// Filtrage des travaux par catégorie
+function filterWorksByCategory(categoryId) {
+    return currentWorks.filter(work => work.category.id === categoryId);
+}
+
+// Appel de la fonction d'initialisation pour charger les travaux au démarrage
+initGallery();

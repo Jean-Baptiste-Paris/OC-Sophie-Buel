@@ -48,15 +48,41 @@ table {
 }
 /** end reset css**/
 body {
-	max-width: 1140px;
-	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
+}
+.edit-banner {
+	display: flex;
+	justify-content: center;
+	align-items: stretch;
+	gap: 20px;
+	width: 100%;
+	min-height: 40px;
+	padding: 10px 0;
+	background-color: black;
+	color: white;
+}
+.edit-banner p {
+	display: flex;
+	gap: 10px;
+	font-size: large;
+	align-self: center;
+}
+#publish {
+	font-size: inherit;
+	font-family: inherit;
+	border-radius: 60px;
+	padding: 10px 20px;
+	border-width: 0;
+}
+header, main, footer {
+	max-width: 1140px;
+	margin:auto;
 }
 header {
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0
+	padding: 50px 0
 }
 section {
 	margin: 50px 0

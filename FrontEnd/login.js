@@ -2,7 +2,7 @@
 const API_URL = 'http://localhost:5678/api/users/login';
 
 //Récuperation du formulaire
-const loginForm = document.getElementById('login-form');
+const loginForm = document.querySelector('#login-form');
 
 let loggedUser = {
     "userId": null,
@@ -12,7 +12,7 @@ let loggedUser = {
 // Requête de connexion sur /users/login et gestion des réponses
 async function attemptLogin(user) {
     // Vérification de la présence d'un précédent message d'erreur
-    const previousMessage = document.getElementsByClassName('error');
+    const previousMessage = document.querySelector('.error');
     if (previousMessage.length > 0) {
         previousMessage[0].remove();                            // Le délai après avoir éffacé le précedent message permet
         await new Promise(resolve => setTimeout(resolve, 100)); // un retour visuel indiquant une nouvelle tentative de connexion
@@ -57,8 +57,8 @@ loginForm.addEventListener('submit', function (event) {
     event.preventDefault();
 
     // Récupération des inputs
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    const email = document.querySelector('#email').value;
+    const password = document.querySelector('#password').value;
 
     // Création d'un élement user contenant les inputs du formulaire
     let user = {

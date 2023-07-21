@@ -47,9 +47,19 @@ table {
 	border-spacing: 0;
 }
 /** end reset css**/
+:root {
+	--main-bg-color: #FFFEF8;
+	--bg-color-2: white;
+	--bg-color-3 : black;
+	--main-highlight-color: #1D6154;
+	--highlight-color-2: #B1663C;
+}
 body {
 	font-family: 'Work Sans' ;
 	font-size: 14px;
+	background-color: var(--main-bg-color);
+	display: flex;
+	flex-direction: column;
 }
 .edit-banner {
 	display: flex;
@@ -59,8 +69,8 @@ body {
 	width: 100%;
 	min-height: 40px;
 	padding: 10px 0;
-	background-color: black;
-	color: white;
+	background-color: var(--bg-color-3);
+	color: var(--bg-color-2);
 }
 .edit-banner p {
 	display: flex;
@@ -75,7 +85,11 @@ body {
 	padding: 10px 20px;
 	border-width: 0;
 }
-header, main, footer {
+.wrapper {
+	width: 90%;
+	align-self: center;
+}
+header, main, footer nav {
 	max-width: 1140px;
 	margin:auto;
 }
@@ -84,8 +98,14 @@ header {
 	justify-content: space-between;
 	padding: 50px 0
 }
+main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
 section {
-	margin: 50px 0
+	margin: 50px 0;
+	width: 85%;
 }
 h1{
 	display: flex;
@@ -93,7 +113,7 @@ h1{
 	font-family: 'Syne';
 	font-size: 22px;
 	font-weight: 800;
-	color: #B1663C
+	color: var(--highlight-color-2);
 }
 
 h1 > span {
@@ -107,7 +127,7 @@ h2{
 	font-family: 'Syne';
 	font-weight: 700;
 	font-size: 30px;
-	color: #1D6154
+	color: var(--main-highlight-color)
 }
 a {
 	color: inherit;
@@ -132,7 +152,14 @@ nav li {
 }
 li:hover,
 nav a:hover {
-	color: #B1663C;
+	color: var(--highlight-color-2);
+}
+.modifier {
+	display: flex;
+	gap: 10px;
+}
+.wrapper .modifier:hover {
+	cursor: pointer;
 }
 #introduction {
 	display: flex;
@@ -143,10 +170,12 @@ nav a:hover {
 }
 #introduction img {
 	display: block;
-	margin: auto;
-	width: 80%;
+	margin-right: auto;
+	width: 90%;
 }
-
+#introduction figure .modifier {
+	padding-top: 20px;
+} 
 #introduction article {
 	flex: 1
 }
@@ -157,11 +186,26 @@ nav a:hover {
 #introduction p {
 	margin-bottom: 0.5em;
 }
+#portfolio {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+.title-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-top: 3em;
+}
+#portfolio .modifier {
+	position: relative;
+	left: 200%;
+}
 #portfolio h2 {
 	text-align: center;
-	margin-bottom: 1em;
+	position: absolute;
 }
-
 .filtres {
 	display: flex;
 	justify-content: center;
@@ -169,15 +213,14 @@ nav a:hover {
 	gap: 10px;
 	height: 35px;
 }
-
 .filtres button {
 	font-family: 'Syne';
 	font-size: small;
-	color: #1D6154;
-	background-color: white;
+	color: var(--main-highlight-color);
+	background-color: var(--main-bg-color);
 	border-radius: 60px;
 	border-width: 1px;
-	border-color: #1D6154;
+	border-color: var(--main-highlight-color);
 	min-width: 100px;
 	padding: 0 10px;
 	transition-duration: 0.2s;
@@ -185,8 +228,8 @@ nav a:hover {
 
 .filtres button:hover,
 .filtres .actif {
-	color: white;
-	background-color: #1D6154;
+	color: var(--bg-color-2);
+	background-color: var(--main-highlight-color);
 }
 
 .gallery {
@@ -249,8 +292,8 @@ nav a:hover {
 input[type="submit"], #login button{
 	font-family: 'Syne';
 	font-weight: 700;
-	color: white;
-	background-color: #1D6154;
+	color: var(--bg-color-2);
+	background-color: var(--main-highlight-color);
 	width: 180px;
 	text-align: center;
 	border-radius: 60px ;
@@ -269,10 +312,12 @@ input[type="submit"] {
 	color: darkred;
 	text-align: center;
 }
-
+footer {
+	background-color: var(--bg-color-2);
+	padding: 2em;
+}
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
-	margin: 2em
 }
 

@@ -1,5 +1,6 @@
 // Récupération des éléments du DOM
-const introSection = document.getElementById('introduction');
+const introSection = document.querySelector('#introduction');
+const titleWrapper = document.querySelector('.title-wrapper');
 
 const iconClasses = ['fa-sharp', 'fa-regular', 'fa-pen-to-square'];
 
@@ -16,7 +17,7 @@ function toggleFilters() {
 function toggleEditBanner() {
     const editBanner = document.createElement('div');
     editBanner.classList.add('edit-banner');
-    const paragraphElement = createModifyElement('Mode édition', iconClasses)
+    const paragraphElement = createModifierElement('Mode édition', iconClasses)
     const buttonElement = document.createElement('button');
     buttonElement.id = 'publish';
     buttonElement.type = 'input';
@@ -27,7 +28,7 @@ function toggleEditBanner() {
     editBanner.appendChild(buttonElement);
 }
 
-function createModifyElement(text, classes) {
+function createModifierElement(text, classes) {
     const paragraphElement = document.createElement('p');
     paragraphElement.classList.add('modifier');
     paragraphElement.innerText = text;
@@ -48,18 +49,34 @@ function createFaIcon(classes) {
 function toggleEditIcons() {
     // Récupération des éléments du DOM
     const introFigure = introSection.firstElementChild;
-    const titleWrapper = document.querySelector('.title-wrapper');
 
-    const paragraphElement1 = createModifyElement('modifier', iconClasses);
-    const paragraphElement2 = createModifyElement('modifier', iconClasses);
+    const paragraphElement1 = createModifierElement('modifier', iconClasses);
+    const paragraphElement2 = createModifierElement('modifier', iconClasses);
 
     introFigure.appendChild(paragraphElement1);
     titleWrapper.appendChild(paragraphElement2);
 }
 
+async function adjustPositions() {
+    const introArticle = introSection.lastElementChild;
+    const worksTitle = titleWrapper.firstElementChild;
+    const modifierElements = document.querySelectorAll('.modifier');
 
-if (sessionStorage.getItem('userToken')) {
-    toggleFilters();
-    toggleEditBanner();
-    toggleEditIcons();
-};
+    if (modifierElements.length != 3) return;
+
+    let offset = modifierElements[1].offsetHeight;
+    introArticle.style.paddingBottom = offset + "px";
+    let offset2 = titleWrapper.lastElementChild.offsetWidth;
+    console.log(offset2);
+    console.log(modifierElements[2].offsetWidth);
+    worksTitle.style.paddingLeft = offset2 + "px";
+}
+
+window.addEventListener('load', () => {
+    if (sessionStorage.getItem('userToken')) {
+        toggleFilters();
+        toggleEditBanner();
+        toggleEditIcons();
+        setTimeout(adjustPositions, 100);
+    }
+});

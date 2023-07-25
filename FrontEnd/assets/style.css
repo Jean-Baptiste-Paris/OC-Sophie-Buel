@@ -196,15 +196,9 @@ nav a:hover {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding-top: 3em;
 }
 #portfolio .modifier {
-	position: relative;
-	left: 200%;
-}
-#portfolio h2 {
-	text-align: center;
-	position: absolute;
+	padding-left: 30px;
 }
 .filtres {
 	display: flex;

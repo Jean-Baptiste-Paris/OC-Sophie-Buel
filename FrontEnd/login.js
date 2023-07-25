@@ -13,8 +13,8 @@ let loggedUser = {
 async function attemptLogin(user) {
     // Vérification de la présence d'un précédent message d'erreur
     const previousMessage = document.querySelector('.error');
-    if (previousMessage.length > 0) {
-        previousMessage[0].remove();                            // Le délai après avoir éffacé le précedent message permet
+    if (previousMessage) {
+        previousMessage.remove();                            // Le délai après avoir éffacé le précedent message permet
         await new Promise(resolve => setTimeout(resolve, 100)); // un retour visuel indiquant une nouvelle tentative de connexion
     }
 
@@ -30,16 +30,17 @@ async function attemptLogin(user) {
 
     // Gestion de la réponse
     switch (response.status) {
-        case 401: // erreur d'autorisation
-        case 404: // utilisateur non trouvé
-            incorrectUserMessage();
-            break;
         case 200: // utilisateur valide, reception de l'element loggedUser
             loggedUser = await response.json();
             console.log(loggedUser);
             sessionStorage.setItem('userId', loggedUser.userId);
             sessionStorage.setItem('userToken', loggedUser.token);
             window.location.href = '/index.html';
+            break;
+        case 401: // erreur d'autorisation
+        case 404: // utilisateur non trouvé
+        default :
+            incorrectUserMessage();
             break;
     }
 }

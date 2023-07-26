@@ -72,7 +72,7 @@ body {
 	background-color: var(--bg-color-3);
 	color: var(--bg-color-2);
 }
-.edit-banner p {
+.edit-banner a {
 	display: flex;
 	gap: 10px;
 	font-size: large;
@@ -129,8 +129,12 @@ h2{
 	font-size: 30px;
 	color: var(--main-highlight-color)
 }
+h3 {
+	font-size: large;
+}
 a {
 	color: inherit;
+	text-decoration: none;
 }
 a:visited {
 	color: initial;
@@ -150,6 +154,9 @@ nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
 }
+nav img {
+	height: 25px;
+}
 li:hover,
 nav a:hover {
 	color: var(--highlight-color-2);
@@ -157,9 +164,6 @@ nav a:hover {
 .modifier {
 	display: flex;
 	gap: 10px;
-}
-.wrapper .modifier:hover {
-	cursor: pointer;
 }
 #introduction {
 	display: flex;
@@ -190,7 +194,7 @@ nav a:hover {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	text-align: center;
+	gap: 30px;
 }
 .title-wrapper {
 	display: flex;
@@ -219,7 +223,6 @@ nav a:hover {
 	padding: 0 10px;
 	transition-duration: 0.2s;
 }
-
 .filtres button:hover,
 .filtres .actif {
 	color: var(--bg-color-2);
@@ -227,7 +230,6 @@ nav a:hover {
 }
 
 .gallery {
-	padding-top: 30px;
 	width: 100%;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
@@ -283,7 +285,7 @@ nav a:hover {
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type="submit"], #login button{
+input[type="submit"], #login button, .modal button{
 	font-family: 'Syne';
 	font-weight: 700;
 	color: var(--bg-color-2);
@@ -292,7 +294,7 @@ input[type="submit"], #login button{
 	text-align: center;
 	border-radius: 60px ;
 }
-input[type="submit"]:hover, #login button:hover {
+input[type="submit"]:hover, button {
 	background-color: #0E2F28;
 	cursor: pointer;
 }
@@ -314,4 +316,57 @@ footer nav ul {
 	display: flex;
 	justify-content: flex-end;
 }
-
+.modal {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+.modal-wrapper {
+	overflow: auto;
+	width: 40vh;
+	height: 50vh;
+	padding: 30px;
+	border-radius: 10px;
+	background-color: var(--main-bg-color);
+}
+.modal-nav {
+	display: flex;;
+}
+#modal1 .modal-nav {
+	justify-content: flex-end;
+}
+.modal i {
+	font-size: large;
+	cursor: pointer;
+}
+.modal-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 10px 30px;
+	gap: 20px;
+}
+.modal-gallery {
+	grid-template-columns: repeat(5, 1fr);
+	grid-column-gap: 5px;
+	grid-row-gap: 5px;
+	padding-bottom: 30px;
+	border-bottom: 1px solid lightgray;
+}
+.placeholder {
+	background-color: #0E2F28;
+	height: 10vh;
+}
+.modal button{
+	border-width: 0;
+	padding: 10px;
+}
+.modal a {
+	color: var(--highlight-color-2);
+}

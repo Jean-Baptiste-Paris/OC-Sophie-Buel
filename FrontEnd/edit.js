@@ -1,16 +1,21 @@
 // Récupération des éléments du DOM
 const introSection = document.querySelector('#introduction');
 const titleWrapper = document.querySelector('.title-wrapper');
+const modals = document.querySelectorAll('.modal');
 
 const iconClasses = ['fa-sharp', 'fa-regular', 'fa-pen-to-square'];
 
+function initEditUI() {
+    removeFilters();
+    toggleEditBanner();
+    toggleEditIcons();
+    setTimeout(adjustPositions, 100);
+}
+
 // Retire les filtres des travaux de la page html
-function toggleFilters() {
-    const allFilters = document.getElementsByClassName('btn-filtre');
-    const filtersArray = Array.from(allFilters);
-    for (const filter of filtersArray) {
-        filter.remove();
-    }
+function removeFilters() {
+    const filtersDiv = document.querySelector('.filtres');
+    if (filtersDiv) filtersDiv.remove();
 }
 
 // Affiche la bannière du mode édition en haut de page
@@ -29,7 +34,7 @@ function toggleEditBanner() {
 }
 
 function createModifierElement(text, classes) {
-    const paragraphElement = document.createElement('p');
+    const paragraphElement = document.createElement('a');
     paragraphElement.classList.add('modifier');
     paragraphElement.innerText = text;
     const iconElement = createFaIcon(classes);
@@ -52,31 +57,53 @@ function toggleEditIcons() {
 
     const paragraphElement1 = createModifierElement('modifier', iconClasses);
     const paragraphElement2 = createModifierElement('modifier', iconClasses);
+    linkModal(paragraphElement2, "#modal1");
 
     introFigure.appendChild(paragraphElement1);
     titleWrapper.appendChild(paragraphElement2);
 }
 
-async function adjustPositions() {
+function linkModal(element, modal) {
+    if (!(element && modal)) return;
+    element.href = modal;
+    element.addEventListener('click', function (event) {
+        event.preventDefault();
+        const target = document.querySelector(modal);
+        target.style.display = null;
+    });
+    
+}
+
+function adjustPositions() {
     const introArticle = introSection.lastElementChild;
     const worksTitle = titleWrapper.firstElementChild;
     const modifierElements = document.querySelectorAll('.modifier');
 
-    if (modifierElements.length != 3) return;
+    if (! introArticle || ! worksTitle || modifierElements.length != 3) return;
 
     let offset = modifierElements[1].offsetHeight;
     introArticle.style.paddingBottom = offset + "px";
-    let offset2 = titleWrapper.lastElementChild.offsetWidth;
-    console.log(offset2);
-    console.log(modifierElements[2].offsetWidth);
-    worksTitle.style.paddingLeft = offset2 + "px";
+    offset = modifierElements[2].offsetWidth;
+    worksTitle.style.paddingLeft = offset + "px";
+}
+
+function creatModalEvents() {
+    const modal1 = Array.from(modals)[0];
+    //const modal2 = Array.from(modals)[1];
+    
+    addCloseEvent(modal1);
+}
+
+function addCloseEvent(modal) {
+    const xMarkIcon = modal.firstElementChild.firstElementChild.lastElementChild;
+    xMarkIcon.addEventListener('click', function (event) {
+        modal.style.display = "none";
+    });
 }
 
 window.addEventListener('load', () => {
     if (sessionStorage.getItem('userToken')) {
-        toggleFilters();
-        toggleEditBanner();
-        toggleEditIcons();
-        setTimeout(adjustPositions, 100);
+        initEditUI();
+        creatModalEvents();
     }
 });

@@ -7,13 +7,13 @@ async function getWorks() {
 }
 
 // Récupération des éléments du DOM
-const divGallery = document.querySelector(".gallery");
+const galleryElements = document.querySelectorAll(".gallery");
 const allFilters = document.querySelectorAll(".btn-filtre");
 const filterTous = document.querySelector("#btn-tous");
 const filterObjets = document.querySelector("#btn-objets");
 const filterAppartements = document.querySelector("#btn-appart");
 const filterHotelsRestos = document.querySelector("#btn-hotels-restos");
-const filterButtons = [
+const filtersCategory = [
     { button: filterTous, categoryId: null },
     { button: filterObjets, categoryId: 1 },
     { button: filterAppartements, categoryId: 2 },
@@ -26,14 +26,15 @@ let currentWorks = [];
 async function initGallery() {
     currentWorks = await getWorks();
     setupFilterListeners();
-    generateWorks(currentWorks);
+    generateWorks(currentWorks, galleryElements[0]);
+    generateModalWorks(currentWorks, galleryElements[1])
     toggle(filterTous);
 }
 
 // Affichage de la grille des travaux
-function generateWorks(works) {
+function generateWorks(works, galleryElement) {
     // Reinitialisation gallerie
-    divGallery.innerHTML = "";
+    galleryElement.innerHTML = "";
     for (const work of works) {
         // Création des balises et de leurs attributs
         const workElement = document.createElement("figure");
@@ -44,7 +45,27 @@ function generateWorks(works) {
         captionElement.innerText = work.title;
 
         // Rattachement des balises
-        divGallery.appendChild(workElement);
+        galleryElement.appendChild(workElement);
+        workElement.appendChild(imageElement);
+        workElement.appendChild(captionElement);
+    }
+}
+
+// Affichage de la grille des travaux
+function generateModalWorks(works, galleryElement) {
+    // Reinitialisation gallerie
+    galleryElement.innerHTML = "";
+    for (const work of works) {
+        // Création des balises et de leurs attributs
+        const workElement = document.createElement("figure");
+        const imageElement = document.createElement("img");
+        imageElement.src = work.imageUrl;
+        imageElement.alt = work.title;
+        const captionElement = document.createElement("figcaption");
+        captionElement.innerText = 'éditer';
+
+        // Rattachement des balises
+        galleryElement.appendChild(workElement);
         workElement.appendChild(imageElement);
         workElement.appendChild(captionElement);
     }
@@ -52,7 +73,7 @@ function generateWorks(works) {
 
 // Initialisation des Events Listeners des filtres
 function setupFilterListeners() {
-    filterButtons.forEach(filter => {
+    filtersCategory.forEach(filter => {
         filter.button.addEventListener("click", function () {
             toggle(filter.button);
             const filteredWorks = filter.categoryId ? filterWorksByCategory(filter.categoryId) : currentWorks;

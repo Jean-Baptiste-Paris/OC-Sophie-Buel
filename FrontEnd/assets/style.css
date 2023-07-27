@@ -78,6 +78,9 @@ body {
 	font-size: large;
 	align-self: center;
 }
+.edit-banner button {
+	background-color: var(--bg-color-2);
+}
 #publish {
 	font-size: inherit;
 	font-family: inherit;
@@ -87,6 +90,7 @@ body {
 }
 .wrapper {
 	width: 90%;
+	min-height: 93vh;
 	align-self: center;
 }
 header, main, footer nav {
@@ -130,7 +134,7 @@ h2{
 	color: var(--main-highlight-color)
 }
 h3 {
-	font-size: large;
+	font-size: x-large;
 }
 a {
 	color: inherit;
@@ -252,7 +256,6 @@ nav a:hover {
 	gap: 40px;
 	padding-top: 100px;
 	width: 40%;
-	min-height: 65vh;
 	margin: auto;
 }
 #contact > *, #login > * {
@@ -329,8 +332,8 @@ footer nav ul {
 }
 .modal-wrapper {
 	overflow: auto;
-	width: 40vh;
-	height: 50vh;
+	width: 60vh;
+	height: 70vh;
 	padding: 30px;
 	border-radius: 10px;
 	background-color: var(--main-bg-color);
@@ -349,15 +352,16 @@ footer nav ul {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 10px 30px;
+	padding: 10px 60px;
 	gap: 20px;
 }
 .modal-gallery {
 	grid-template-columns: repeat(5, 1fr);
-	grid-column-gap: 5px;
-	grid-row-gap: 5px;
-	padding-bottom: 30px;
+	grid-column-gap: 10px;
+	grid-row-gap: 10px;
+	padding: 30px 0;
 	border-bottom: 1px solid lightgray;
+	font-size: smaller;
 }
 .placeholder {
 	background-color: #0E2F28;
@@ -366,6 +370,7 @@ footer nav ul {
 .modal button{
 	border-width: 0;
 	padding: 10px;
+	margin-top: 10px;
 }
 .modal a {
 	color: var(--highlight-color-2);

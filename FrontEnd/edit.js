@@ -1,4 +1,3 @@
-// Récupération des éléments du DOM
 const introSection = document.querySelector('#introduction');
 const titleWrapper = document.querySelector('.title-wrapper');
 const modals = document.querySelectorAll('.modal');
@@ -79,7 +78,7 @@ function adjustPositions() {
     const worksTitle = titleWrapper.firstElementChild;
     const modifierElements = document.querySelectorAll('.modifier');
 
-    if (! introArticle || ! worksTitle || modifierElements.length != 3) return;
+    if (!(introArticle && worksTitle && modifierElements.length === 3)) return;
 
     let offset = modifierElements[1].offsetHeight;
     introArticle.style.paddingBottom = offset + "px";
@@ -87,8 +86,8 @@ function adjustPositions() {
     worksTitle.style.paddingLeft = offset + "px";
 }
 
-function creatModalEvents() {
-    const modal1 = Array.from(modals)[0];
+function createModalEvents() {
+    const modal1 = modals[0];
     //const modal2 = Array.from(modals)[1];
     
     addCloseEvent(modal1);
@@ -96,7 +95,7 @@ function creatModalEvents() {
 
 function addCloseEvent(modal) {
     const xMarkIcon = modal.firstElementChild.firstElementChild.lastElementChild;
-    xMarkIcon.addEventListener('click', function (event) {
+    xMarkIcon.addEventListener('click', function () {
         modal.style.display = "none";
     });
 }
@@ -104,6 +103,6 @@ function addCloseEvent(modal) {
 window.addEventListener('load', () => {
     if (sessionStorage.getItem('userToken')) {
         initEditUI();
-        creatModalEvents();
+        createModalEvents();
     }
 });

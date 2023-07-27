@@ -333,16 +333,17 @@ footer nav ul {
 .modal-wrapper {
 	overflow: auto;
 	width: 60vh;
-	height: 70vh;
+	max-height: 70vh;
 	padding: 30px;
 	border-radius: 10px;
 	background-color: var(--main-bg-color);
 }
 .modal-nav {
-	display: flex;;
-}
-#modal1 .modal-nav {
+	display: flex;
 	justify-content: flex-end;
+}
+#modal2 .modal-nav {
+	justify-content: space-between;
 }
 .modal i {
 	font-size: large;

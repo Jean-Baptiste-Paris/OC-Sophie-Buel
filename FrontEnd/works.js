@@ -42,7 +42,6 @@ function generateWorks(works, galleryElement) {
         imageElement.src = work.imageUrl;
         imageElement.alt = work.title;
         const captionElement = document.createElement("figcaption");
-        console.log(galleryElement);
         captionElement.innerText = galleryElement.classList.contains("modal-gallery") ? "éditer" : work.title;
 
         // Rattachement des balises

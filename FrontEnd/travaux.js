@@ -27,7 +27,7 @@ async function initGallery() {
     currentWorks = await getWorks();
     setupFilterListeners();
     generateWorks(currentWorks, galleryElements[0]);
-    generateModalWorks(currentWorks, galleryElements[1])
+    generateWorks(currentWorks, galleryElements[1])
     toggle(filterTous);
 }
 
@@ -42,27 +42,8 @@ function generateWorks(works, galleryElement) {
         imageElement.src = work.imageUrl;
         imageElement.alt = work.title;
         const captionElement = document.createElement("figcaption");
-        captionElement.innerText = work.title;
-
-        // Rattachement des balises
-        galleryElement.appendChild(workElement);
-        workElement.appendChild(imageElement);
-        workElement.appendChild(captionElement);
-    }
-}
-
-// Affichage de la grille des travaux
-function generateModalWorks(works, galleryElement) {
-    // Reinitialisation gallerie
-    galleryElement.innerHTML = "";
-    for (const work of works) {
-        // Création des balises et de leurs attributs
-        const workElement = document.createElement("figure");
-        const imageElement = document.createElement("img");
-        imageElement.src = work.imageUrl;
-        imageElement.alt = work.title;
-        const captionElement = document.createElement("figcaption");
-        captionElement.innerText = 'éditer';
+        console.log(galleryElement);
+        captionElement.innerText = galleryElement.classList.contains("modal-gallery") ? "éditer" : work.title;
 
         // Rattachement des balises
         galleryElement.appendChild(workElement);

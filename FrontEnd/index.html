@@ -12,7 +12,7 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 	<script src="https://kit.fontawesome.com/8b28c0dd29.js" crossorigin="anonymous"></script>
-	<script type="module" src="works.js"></script>
+	<script type="module" src="galleries.js"></script>
 	<script type="module" src="edit.js"></script>
 
 </head>
@@ -21,14 +21,14 @@
 
 	<div class="wrapper">
 		<header>
-			<a href='/index.html'>
+			<a href='./index.html'>
 				<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
 			</a>
 			<nav>
 				<ul>
 					<li>projets</li>
 					<li>contact</li>
-					<li><a href="/login.html">login</a></li>
+					<li><a href="./login.html">login</a></li>
 					<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 				</ul>
 			</nav>
@@ -55,7 +55,7 @@
 					<h2>Mes Projets</h2>
 				</div>
 				<div class="filtres">
-					<button class="btn-filtre" id="btn-tous">Tous</button>
+					<button class="btn-filtre actif" id="btn-tous">Tous</button>
 					<button class="btn-filtre" id="btn-objets">Objets</button>
 					<button class="btn-filtre" id="btn-appart">Appartements</button>
 					<button class="btn-filtre" id="btn-hotels-restos">Hôtels & restaurants</button>
@@ -78,25 +78,24 @@
 			<aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modal1-title" style="display:none;">
 				<div class="modal-wrapper">
 					<div class="modal-nav">
-						<i class="fa-regular fa-circle-xmark"></i>
+						<i class="fa-solid fa-xmark"></i>
 					</div>
 					<div class="modal-content">
 						<h3 id="modal1-title">Galerie photo</h3>
-						<div class="gallery modal-gallery">
-							<div class="placeholder"></div>
-							<div class="placeholder"></div>
-							<div class="placeholder"></div>
-							<div class="placeholder"></div>
-							<div class="placeholder"></div>
-							<div class="placeholder"></div>
-							<div class="placeholder"></div>
-							<div class="placeholder"></div>
-							<div class="placeholder"></div>
-							<div class="placeholder"></div>
-							<div class="placeholder"></div>
-						</div>
-						<a href="#modal2"><button>Ajouter une photo</button></a>
+						<div class="gallery modal-gallery"></div>
+						<a href="#modal2" id="btn-add-work"><button>Ajouter une photo</button></a>
 						<a href="#">Supprimer la galerie</a>
+					</div>
+				</div>
+			</aside>
+			<aside id="modal2" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modal2-title" style="display:none;">
+				<div class="modal-wrapper">
+					<div class="modal-nav">
+						<i class="fa-solid fa-arrow-left"></i>
+						<i class="fa-solid fa-xmark"></i>
+					</div>
+					<div class="modal-content">
+						<h3 id="modal2-title">Ajout photo</h3>
 					</div>
 				</div>
 			</aside>

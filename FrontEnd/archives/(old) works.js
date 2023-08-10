@@ -1,12 +1,5 @@
-// Récupération des travaux depuis l'API
 const API_URL = 'http://localhost:5678/api/works';
 
-async function getWorks() {
-    const response = await fetch(API_URL);
-    return await response.json();
-}
-
-// Récupération des éléments du DOM
 const galleryElements = document.querySelectorAll(".gallery");
 const allFilters = document.querySelectorAll(".btn-filtre");
 const filterTous = document.querySelector("#btn-tous");
@@ -19,22 +12,24 @@ const filtersCategory = [
     { button: filterAppartements, categoryId: 2 },
     { button: filterHotelsRestos, categoryId: 3 }
 ];
-
 let currentWorks = [];
 
-// Initialisation
+async function fetchWorks() {
+    const response = await fetch(API_URL);
+    return await response.json();
+}
+
 async function initGallery() {
-    currentWorks = await getWorks();
+    currentWorks = await fetchWorks();
     setupFilterListeners();
-    generateWorks(currentWorks, galleryElements[0]);
-    generateWorks(currentWorks, galleryElements[1])
+    generateWorkCards(currentWorks, galleryElements[0]);
+    generateWorkCards(currentWorks, galleryElements[1])
     toggle(filterTous);
 }
 
-// Affichage de la grille des travaux
-function generateWorks(works, galleryElement) {
-    // Reinitialisation gallerie
+function generateWorkCards({works, galleryElement}) {
     galleryElement.innerHTML = "";
+
     for (const work of works) {
         // Création des balises et de leurs attributs
         const workElement = document.createElement("figure");
@@ -57,7 +52,7 @@ function setupFilterListeners() {
         filter.button.addEventListener("click", function () {
             toggle(filter.button);
             const filteredWorks = filter.categoryId ? filterWorksByCategory(filter.categoryId) : currentWorks;
-            generateWorks(filteredWorks)
+            generateWorkCards(filteredWorks)
         });
     });
 }

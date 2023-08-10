@@ -67,7 +67,9 @@ function linkModal(element, modal) {
     element.href = modal;
     element.addEventListener('click', function (event) {
         event.preventDefault();
+        if (element.tagName === "button") element.style.display = 'none';
         const target = document.querySelector(modal);
+        console.log("target : "+ target);
         target.style.display = null;
     });
     
@@ -88,9 +90,13 @@ function adjustPositions() {
 
 function createModalEvents() {
     const modal1 = modals[0];
-    //const modal2 = Array.from(modals)[1];
+    const modal2 = document.querySelector("#modal2");
+    const addWorkButton = document.querySelector('#btn-add-work');
     
     addCloseEvent(modal1);
+    linkModal(addWorkButton, "modal2");
+    addCloseEvent(modal2);
+    //addBackEvent(modal2);
 }
 
 function addCloseEvent(modal) {

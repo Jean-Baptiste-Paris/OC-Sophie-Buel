@@ -1,4 +1,5 @@
-const allFilters = document.querySelectorAll(".btn-filtre");
+//filters-display.js
+import { allFilters } from "./dom-elements";
 
 function toggleFilterButtons(activeButton) {
     allFilters.forEach(filter => {

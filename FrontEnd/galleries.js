@@ -1,8 +1,8 @@
-import { fetchWorks } from './api.js';
+//galleries.js
+import { galleryElements } from './dom-elements.js';
+import { fetchWorks } from './works-api.js';
 import { setupFilterListeners } from './filters-logic.js';
 import { generateWorkCards } from './work-cards.js';
-
-const galleryElements = document.querySelectorAll(".gallery");
 
 async function initGalleries() {
     const currentWorks = await fetchWorks();

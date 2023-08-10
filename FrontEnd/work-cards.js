@@ -1,3 +1,4 @@
+//work-cards.js
 function generateWorkCards(works, galleryElement) {
     if (!galleryElement) return console.error("Erreur dans generateWorks : galleryElement n'est pas défini");
     galleryElement.innerHTML = "";

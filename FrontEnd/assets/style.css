@@ -207,7 +207,8 @@ nav a:hover {
 	align-items: center;
 }
 #portfolio .modifier {
-	padding-left: 30px;
+	position: absolute;
+	transform: translate(150%);
 }
 .filtres {
 	display: flex;

@@ -8,7 +8,6 @@ function initEditUI() {
     removeFilters();
     toggleEditBanner();
     toggleEditIcons();
-    setTimeout(adjustPositions, 100);
 }
 
 // Retire les filtres des travaux de la page html
@@ -73,19 +72,6 @@ function linkModal(element, modal) {
         target.style.display = null;
     });
     
-}
-
-function adjustPositions() {
-    const introArticle = introSection.lastElementChild;
-    const worksTitle = titleWrapper.firstElementChild;
-    const modifierElements = document.querySelectorAll('.modifier');
-
-    if (!(introArticle && worksTitle && modifierElements.length === 3)) return;
-
-    let offset = modifierElements[1].offsetHeight;
-    introArticle.style.paddingBottom = offset + "px";
-    offset = modifierElements[2].offsetWidth;
-    worksTitle.style.paddingLeft = offset + "px";
 }
 
 function createModalEvents() {

@@ -157,6 +157,7 @@ nav ul {
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
+	cursor: pointer;
 }
 nav img {
 	height: 25px;
@@ -316,8 +317,8 @@ footer {
 	padding: 2em;
 }
 footer nav ul {
-	display: flex;
 	justify-content: flex-end;
+	gap: 50px;
 }
 .modal {
 	display: flex;

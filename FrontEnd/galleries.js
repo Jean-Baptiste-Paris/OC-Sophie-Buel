@@ -2,7 +2,7 @@
 import { galleryElements } from './dom-elements.js';
 import { fetchWorks } from './works-api.js';
 import { setupFilterListeners } from './filters-logic.js';
-import { generateWorkCards } from './work-cards.js';
+import { generateWorkCards } from './works-cards.js';
 
 async function initGalleries() {
     const currentWorks = await fetchWorks();
@@ -11,4 +11,4 @@ async function initGalleries() {
     generateWorkCards(currentWorks, galleryElements[1]);
 }
 
-initGalleries();
+export { initGalleries }

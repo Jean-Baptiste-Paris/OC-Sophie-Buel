@@ -13,12 +13,16 @@ async function attemptLogin(user) {
     }
 }
 
-loginForm.addEventListener('submit', event => {
-    event.preventDefault();
-    const user =
-    {
-        "email": emailInput.value,
-        "password": passwordInput.value,
-    }
-    attemptLogin(user);
-})
+function initLoginForm() {
+    loginForm.addEventListener('submit', event => {
+        event.preventDefault();
+        const user =
+        {
+            "email": emailInput.value,
+            "password": passwordInput.value,
+        }
+        attemptLogin(user);
+    });
+}
+
+export { initLoginForm }

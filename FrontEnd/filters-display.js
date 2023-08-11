@@ -11,4 +11,12 @@ function toggleFilterButtons(activeButton) {
     });
 }
 
-export { toggleFilterButtons };
+function removeFilters() {
+    const filtersDiv = document.querySelector('.filtres');
+    if (filtersDiv) filtersDiv.remove();
+}
+
+export {
+    toggleFilterButtons,
+    removeFilters
+};

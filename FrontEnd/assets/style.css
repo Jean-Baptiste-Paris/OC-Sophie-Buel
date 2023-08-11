@@ -208,7 +208,7 @@ nav a:hover {
 }
 #portfolio .modifier {
 	position: absolute;
-	transform: translate(150%);
+	transform: translate(200%);
 }
 .filtres {
 	display: flex;

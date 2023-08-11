@@ -1,8 +1,5 @@
 //login-handle-response.js
-import { loginForm } from "./dom-elements.js";
-
 async function handleLoginResponse(response) {
-    console.log(response.status);
     switch (response.status) {
         case 200: // utilisateur valide
             sessionStorage.setItem('userId', response.userId);

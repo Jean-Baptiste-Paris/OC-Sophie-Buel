@@ -4,7 +4,6 @@ import { fetchLogin } from "./login-api.js";
 import { handleLoginResponse } from "./login-handle-response.js";
 
 async function attemptLogin(user) {
-
     try {
         const response = await fetchLogin(user);
         await handleLoginResponse(response);
@@ -20,7 +19,7 @@ function initLoginForm() {
         {
             "email": emailInput.value,
             "password": passwordInput.value,
-        }
+        };
         attemptLogin(user);
     });
 }

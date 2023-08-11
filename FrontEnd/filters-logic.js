@@ -1,6 +1,6 @@
 //filters-logic.js
 import { toggleFilterButtons } from "./filters-display.js";
-import { generateWorkCards } from "./works-cards.js";
+import { createWorkCards } from "./works-cards.js";
 
 const filtersCategory = [
     { button: document.querySelector("#btn-tous"), categoryId: null },
@@ -16,7 +16,7 @@ function setupFilterListeners(works, galleryElement) {
         filterButton.addEventListener("click", () => {
             toggleFilterButtons(filterButton);
             const filteredWorks = filter.categoryId ? filterWorksByCategory(works, filter.categoryId) : works;
-            generateWorkCards(filteredWorks, galleryElement);
+            createWorkCards(filteredWorks, galleryElement);
         });
     });
 }

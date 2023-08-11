@@ -1,5 +1,5 @@
 //work-cards.js
-function generateWorkCards(works, galleryElement) {
+function createWorkCards(works, galleryElement) {
     if (!galleryElement) return console.error("Erreur dans generateWorks : galleryElement n'est pas défini");
     galleryElement.innerHTML = "";
 
@@ -18,4 +18,4 @@ function generateWorkCards(works, galleryElement) {
     }
 }
 
-export { generateWorkCards };
+export { createWorkCards };

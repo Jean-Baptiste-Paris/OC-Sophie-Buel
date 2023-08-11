@@ -1,13 +1,9 @@
 //login.js
-import { loginForm, emailInput, passwordInput } from "./dom-elements";
-import { fetchLogin } from "./login-api";
-import { handleLoginResponse } from "./login-handle-response";
+import { loginForm, emailInput, passwordInput } from "./dom-elements.js";
+import { fetchLogin } from "./login-api.js";
+import { handleLoginResponse } from "./login-handle-response.js";
 
-async function attemptLogin({ email = "", password = "" }) {
-    const user = {
-        "email": email,
-        "password": password
-    };
+async function attemptLogin(user) {
 
     try {
         const response = await fetchLogin(user);
@@ -19,5 +15,10 @@ async function attemptLogin({ email = "", password = "" }) {
 
 loginForm.addEventListener('submit', event => {
     event.preventDefault();
-    attemptLogin(emailInput.value, passwordInput.value);
+    const user =
+    {
+        "email": emailInput.value,
+        "password": passwordInput.value,
+    }
+    attemptLogin(user);
 })

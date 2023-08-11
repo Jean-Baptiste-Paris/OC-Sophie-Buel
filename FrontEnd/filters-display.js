@@ -1,5 +1,5 @@
 //filters-display.js
-import { allFilters } from "./dom-elements";
+import { allFilters } from "./dom-elements.js";
 
 function toggleFilterButtons(activeButton) {
     allFilters.forEach(filter => {

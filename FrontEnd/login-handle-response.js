@@ -1,11 +1,13 @@
 //login-handle-response.js
+import { loginForm } from "./dom-elements.js";
+
 async function handleLoginResponse(response) {
+    console.log(response.status);
     switch (response.status) {
         case 200: // utilisateur valide
-            loggedUser = await response.json();
-            sessionStorage.setItem('userId', loggedUser.userId);
-            sessionStorage.setItem('userToken', loggedUser.token);
-            window.location.href = '/index.html';
+            sessionStorage.setItem('userId', response.userId);
+            sessionStorage.setItem('userToken', response.token);
+            window.location.href = './index.html';
             break;
         case 401: // erreur d'autorisation
         case 404: // utilisateur non trouvé

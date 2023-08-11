@@ -1,4 +1,4 @@
-//login.js
+//login-logic.js
 import { loginForm, emailInput, passwordInput } from "./dom-elements.js";
 import { fetchLogin } from "./login-api.js";
 import { handleLoginResponse } from "./login-handle-response.js";

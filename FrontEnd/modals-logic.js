@@ -9,4 +9,11 @@ function linkModal(linkedElement, modalId) {
     });
 }
 
-export { linkModal };
+function addCloseEvent(iconElement, modalElement) {
+    iconElement.addEventListener('click', () => modalElement.remove());
+}
+
+export { 
+    linkModal,
+    addCloseEvent
+};

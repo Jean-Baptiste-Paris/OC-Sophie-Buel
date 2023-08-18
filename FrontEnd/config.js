@@ -3,11 +3,23 @@ const API_URLS = {
     GET_WORKS: 'http://localhost:5678/api/works',
     POST_LOGIN: 'http://localhost:5678/api/users/login'
 };
+const filtersCategory = [
+    { button: document.querySelector("#btn-tous"), categoryId: null },
+    { button: document.querySelector("#btn-objets"), categoryId: 1 },
+    { button: document.querySelector("#btn-appart"), categoryId: 2 },
+    { button: document.querySelector("#btn-hotels-restos"), categoryId: 3 }
+];
+const modalsData = [
+    { modalId: "modal1", title: "Galerie photo"},
+    { modalId: "modal2", title: "Ajout photo"}
+]
 const modifierElementIconClasses = ['fa-sharp', 'fa-regular', 'fa-pen-to-square'];
 const closeIconClasses = ['fa-solid', 'fa-xmark'];
 
 export {
     API_URLS,
+    filtersCategory,
+    modalsData,
     modifierElementIconClasses,
     closeIconClasses
 };

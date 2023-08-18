@@ -1,13 +1,7 @@
 //filters-logic.js
 import { toggleFilterButtons } from "./filters-display.js";
 import { createWorkCards } from "./works-cards.js";
-
-const filtersCategory = [
-    { button: document.querySelector("#btn-tous"), categoryId: null },
-    { button: document.querySelector("#btn-objets"), categoryId: 1 },
-    { button: document.querySelector("#btn-appart"), categoryId: 2 },
-    { button: document.querySelector("#btn-hotels-restos"), categoryId: 3 }
-];
+import { filtersCategory } from "./config.js";
 
 function setupFilterListeners(works, galleryElement) {
     filtersCategory.forEach(filter => {

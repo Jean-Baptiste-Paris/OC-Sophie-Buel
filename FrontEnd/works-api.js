@@ -13,4 +13,6 @@ async function fetchWorks() {
     }
 }
 
-export { fetchWorks };
+export {
+    fetchWorks,
+};

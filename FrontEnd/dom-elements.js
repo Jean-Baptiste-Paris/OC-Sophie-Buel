@@ -9,6 +9,7 @@ const introSection = document.querySelector('#introduction');
 const introFigure = introSection ? introSection.querySelector('figure') : null;
 const titleWrapper = document.querySelector('.title-wrapper');
 const modals = document.querySelectorAll('.modal');
+const mainTag = document.querySelector('main');
 
 export {
     storageButton,
@@ -19,5 +20,6 @@ export {
     passwordInput,
     introFigure,
     titleWrapper,
-    modals
+    modals,
+    mainTag
 };

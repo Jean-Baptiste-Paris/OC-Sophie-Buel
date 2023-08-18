@@ -1,8 +1,9 @@
 //modals-create.js
 import { createFaIcon } from "./global-create.js";
 import { closeIconClasses } from "./config.js";
+import { addCloseEvent } from "./modals-logic.js";
 
-function createModalElement(modalId, title, content) {
+function createModalElement(modalId, title) {
     const modal = document.createElement('aside');
     modal.id = modalId;
     modal.classList.add('modal');
@@ -15,7 +16,7 @@ function createModalElement(modalId, title, content) {
     modalNav.classList.add('modal-nav');
     const closeButton = createFaIcon(closeIconClasses);
     modalNav.appendChild(closeButton);
-    addCloseEvent(closeButton);
+    addCloseEvent(closeButton, modal);
 
     const modalContent = document.createElement('div');
     modalContent.classList.add('modal-content');
@@ -30,10 +31,6 @@ function createModalElement(modalId, title, content) {
     modal.appendChild(modalWrapper);
 
     return modal;
-}
-
-function addCloseEvent(iconElement) {
-    iconElement.addEventListener('click', () => modalElement.remove());
 }
 
 export { createModalElement }

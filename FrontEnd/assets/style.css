@@ -268,7 +268,7 @@ nav a:hover {
 #contact h2 {
 	margin-bottom: 20px;
 }
-#contact form, #login form {
+#contact form, #login form, #photo-form {
 	text-align: left;
 	display: flex;
 	flex-direction: column;
@@ -277,13 +277,16 @@ nav a:hover {
 	margin-top:30px;
 }
 #contact input,
-#login input, #login button{
+#login input,
+#login button,
+#photo-form input,
+select{
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-#contact label, #login label {
+label{
 	margin: 2em 0 1em 0;
 }
 #contact textarea {
@@ -306,6 +309,11 @@ input[type="submit"]:hover, button {
 }
 input[type="submit"] {
 	margin : 2em auto ;
+}
+select {
+	background-color: white;
+	padding-left: 15px;
+	padding-right: 15px;
 }
 #login button {
 	align-self: center;
@@ -348,7 +356,7 @@ footer nav ul {
 #modal2 .modal-nav {
 	justify-content: space-between;
 }
-.modal i {
+.modal-nav i {
 	font-size: large;
 	cursor: pointer;
 }
@@ -367,10 +375,6 @@ footer nav ul {
 	border-bottom: 1px solid lightgray;
 	font-size: smaller;
 }
-.placeholder {
-	background-color: #0E2F28;
-	height: 10vh;
-}
 .modal button{
 	border-width: 0;
 	padding: 10px;
@@ -378,4 +382,39 @@ footer nav ul {
 }
 .modal a {
 	color: var(--highlight-color-2);
+}
+#photo-frame {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 20vh;
+	width: 100%;
+	background-color: #E8F1F6;
+	border-radius: 3px;
+}
+.fa-image{
+	color: #CBD6DC;
+	font-size: 60px;
+}
+#btn-add-photo{
+	color: #306685;
+	font-family: unset;
+	font-weight: unset;
+	margin-top: 20px;
+}
+#photo-frame p{
+	padding-top: 10px;
+	font-size: x-small;
+}
+#photo-form {
+	width: 100%;
+	border-bottom: #306685 solid 1px;
+	padding-bottom: 40px;
+}
+#photo-form :first-child{
+	margin-top: unset;
+}
+#modal2 button {
+	background-color: #CBD6DC;
 }

@@ -87,8 +87,8 @@
 						<a href="#">Supprimer la galerie</a>
 					</div>
 				</div>
-			</aside>
-			<aside id="modal2" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modal2-title" style="display:none;">
+			</aside> -->
+			<aside id="modal2" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modal2-title">
 				<div class="modal-wrapper">
 					<div class="modal-nav">
 						<i class="fa-solid fa-arrow-left"></i>
@@ -96,9 +96,27 @@
 					</div>
 					<div class="modal-content">
 						<h3 id="modal2-title">Ajout photo</h3>
+						<div id="photo-frame">
+							<i class="fa-regular fa-image"></i>
+							<button id="btn-add-photo">+ Ajouter photo</button>
+							<p>jpg, png : 4mo max</p>
+						</div>
+						<form action="#" method="post" id="photo-form">
+							<label for="title">Titre</label>
+							<input type="text" name="title" id="title">
+							<label for="category">Catégorie</label>
+							<select name="category" id="category">
+								<option label=" " hidden disabled selected value></option>
+								<option value="Objets">Objets</option>
+								<option value="Appartements">Appartements</option>
+								<option value="Hôtels et restaurants">Hôtels et restaurants</option>
+							</select>
+							
+						</form>
+						<button type="submit" form="photo-form" value="submit">Valider</button>
 					</div>
 				</div>
-			</aside> -->
+			</aside>
 		</main>
 	</div>
 

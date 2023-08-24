@@ -3,12 +3,22 @@ import { createModalElement } from "./modals-create.js";
 import { modalsData } from "./config.js";
 import { mainTag } from "./dom-elements.js";
 import { modal1CreateContent } from "./modals-modal1.js";
+import { modal2CreateContent } from "./modals-modal2.js";
 
 function openModal(modalId){
-    const modal = createModalElement(modalId, modalsData[0].title);
+    const modal = createModalElement(modalId, modalsData[modalId]);
     mainTag.appendChild(modal);
     const contentWrapper = modal.querySelector('.modal-content');
-    modal1CreateContent(contentWrapper);
+    switch (modalId){
+        case 'modal1':
+            modal1CreateContent(contentWrapper);
+            break;
+        case 'modal2':
+            modal2CreateContent(contentWrapper);
+            break;
+        default:
+            break;
+    }
 }
 
 export { openModal }

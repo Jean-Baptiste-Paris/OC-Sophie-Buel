@@ -13,7 +13,13 @@ function addCloseEvent(iconElement, modalElement) {
     iconElement.addEventListener('click', () => modalElement.remove());
 }
 
+function addBackEvent(iconElement, modalElement) {
+    iconElement.addEventListener('click', () => modalElement.remove());
+    openModal('modal1');
+}
+
 export { 
     linkModal,
-    addCloseEvent
+    addCloseEvent,
+    addBackEvent
 };

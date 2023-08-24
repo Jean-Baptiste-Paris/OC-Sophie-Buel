@@ -1,6 +1,7 @@
 //modals-modal1.js
 import { fetchWorks } from "./works-api.js";
 import { createWorkCards } from "./works-cards.js";
+import { linkModal } from "./modals-logic.js";
 
 async function modal1CreateContent(modalContentWrapper) {
     const galleryElement = document.createElement('div');
@@ -13,6 +14,7 @@ async function modal1CreateContent(modalContentWrapper) {
     buttonElement.id = "btn-add-work";
     buttonElement.href = "#modal2";
     buttonElement.innerText = "Ajouter une photo";
+    linkModal(buttonElement, 'modal2');
 
     const linkElement = document.createElement('a');
     linkElement.href = '#';

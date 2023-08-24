@@ -9,17 +9,21 @@ const filtersCategory = [
     { button: document.querySelector("#btn-appart"), categoryId: 2 },
     { button: document.querySelector("#btn-hotels-restos"), categoryId: 3 }
 ];
-const modalsData = [
-    { modalId: "modal1", title: "Galerie photo"},
-    { modalId: "modal2", title: "Ajout photo"}
-]
+const modalsData = {
+    "modal1" : "Galerie photo",
+    "modal2" : "Ajout photo"
+}
+const workCategories = [ 'Objets', 'Appartements', 'Hôtels et restaurants'];
 const modifierElementIconClasses = ['fa-sharp', 'fa-regular', 'fa-pen-to-square'];
 const closeIconClasses = ['fa-solid', 'fa-xmark'];
+const backIconClasses = ['fa-solid', 'fa-arrow-left'];
 
 export {
     API_URLS,
     filtersCategory,
     modalsData,
+    workCategories,
     modifierElementIconClasses,
-    closeIconClasses
+    closeIconClasses,
+    backIconClasses
 };

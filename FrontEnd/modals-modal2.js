@@ -21,7 +21,7 @@ function modal2CreateContent(modalContentWrapper){
 
     const submitButton = createElement("button");
     submitButton.type = 'submit';
-    submitButton.form = 'photo-form';
+    submitButton.setAttribute('form', 'photo-form');
     submitButton.value = 'submit';
     submitButton.innerText = 'Valider';
 
@@ -64,7 +64,7 @@ function photoFormContent(domElement) {
     categoryLabel.for = 'category';
     categoryLabel.innerText = 'Catégorie';
     const categorySelect = createElement('select');
-    for (cat of workCategories) {
+    for (const cat of workCategories) {
         selectAddOption(cat, categorySelect);
     }
 

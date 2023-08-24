@@ -15,7 +15,7 @@ function displayAdminUI() {
 function displayEditElements() {
     const editElement1 = createModifierElement('modifier', iconClasses);
     const editElement2 = createModifierElement('modifier', iconClasses);
-    linkModal(editElement2, "#modal1");
+    linkModal(editElement2, "modal1");
 
     introFigure.appendChild(editElement1);
     titleWrapper.appendChild(editElement2);

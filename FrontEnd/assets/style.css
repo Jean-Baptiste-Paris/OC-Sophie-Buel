@@ -276,15 +276,18 @@ nav a:hover {
 #contact form {
 	margin-top:30px;
 }
-#contact input,
-#login input,
 #login button,
-#photo-form input,
+input,
 select{
 	height: 50px;
-	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	padding: 0 15px;
+}
+input,
+select,
+option {
+	font-family: inherit;
 }
 label{
 	margin: 2em 0 1em 0;
@@ -312,11 +315,10 @@ input[type="submit"] {
 }
 select {
 	background-color: white;
-	padding-left: 15px;
-	padding-right: 15px;
 }
 #login button {
 	align-self: center;
+	font-size: 1.2em;
 }
 .error {
 	color: darkred;
@@ -375,6 +377,9 @@ footer nav ul {
 	border-bottom: 1px solid lightgray;
 	font-size: smaller;
 }
+.modal-gallery figcaption {
+	cursor: pointer;
+}
 .modal button{
 	border-width: 0;
 	padding: 10px;
@@ -392,6 +397,10 @@ footer nav ul {
 	width: 100%;
 	background-color: #E8F1F6;
 	border-radius: 3px;
+}
+#photo-frame img {
+    max-width: 100%;
+    max-height: 100%;
 }
 .fa-image{
 	color: #CBD6DC;

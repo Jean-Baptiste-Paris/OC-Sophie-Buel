@@ -35,6 +35,17 @@ function photoFrameContent(domElement) {
         throw new Error("Paramètre non défini");
     }
 
+    const storedWorkInfo = localStorage.getItem('workInfo');
+    if (storedWorkInfo) {
+        const parsedWorkInfo = JSON.parse(storedWorkInfo);
+        const imageElement = createElement('img');
+        console.log(parsedWorkInfo);
+        imageElement.src = parsedWorkInfo.imageUrl;
+
+        domElement.appendChild(imageElement);
+        return
+    }
+
     const iconElement = createFaIcon(photoFrameIconClasses);
     const buttonElement = createElement('button');
     buttonElement.id = 'btn-add-photo';
@@ -45,6 +56,7 @@ function photoFrameContent(domElement) {
     domElement.appendChild(iconElement);
     domElement.appendChild(buttonElement);
     domElement.appendChild(paragraphElement);
+   
 }
 
 function photoFormContent(domElement) {
@@ -66,6 +78,13 @@ function photoFormContent(domElement) {
     const categorySelect = createElement('select');
     for (const cat of workCategories) {
         selectAddOption(cat, categorySelect);
+    }
+
+    const storedWorkInfo = localStorage.getItem('workInfo');
+    if (storedWorkInfo) {
+        const parsedWorkInfo = JSON.parse(storedWorkInfo);
+        titleInput.value = parsedWorkInfo.title;
+        categorySelect.value = parsedWorkInfo.category.name;
     }
 
     domElement.appendChild(titleLabel);

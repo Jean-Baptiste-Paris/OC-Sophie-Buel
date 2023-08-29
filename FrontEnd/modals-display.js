@@ -7,7 +7,6 @@ import { modal2CreateContent } from "./modals-modal2.js";
 
 function openModal(modalId){
     const closeModal = document.querySelector('.modal');
-    console.log(closeModal);
     if (closeModal) {
         closeModal.remove();
     }

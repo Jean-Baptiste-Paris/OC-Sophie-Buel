@@ -13,7 +13,7 @@ const modalsData = {
     "modal1" : "Galerie photo",
     "modal2" : "Ajout photo"
 }
-const workCategories = [ '','Objets', 'Appartements', 'Hôtels et restaurants'];
+const workCategories = [ '','Objets', 'Appartements', 'Hotels & restaurants'];
 const modifierElementIconClasses = ['fa-sharp', 'fa-regular', 'fa-pen-to-square'];
 const closeIconClasses = ['fa-solid', 'fa-xmark'];
 const backIconClasses = ['fa-solid', 'fa-arrow-left'];

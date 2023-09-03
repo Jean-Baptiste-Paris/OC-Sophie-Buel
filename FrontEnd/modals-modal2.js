@@ -23,6 +23,7 @@ function modal2CreateContent(modalContentWrapper){
     const submitButton = createElement("button");
     submitButton.type = 'submit';
     submitButton.setAttribute('form', 'photo-form');
+    submitButton.id = 'submit-work';
     submitButton.value = 'submit';
     submitButton.innerText = 'Valider';
 
@@ -40,7 +41,6 @@ function photoFrameContent(domElement) {
     if (storedWorkInfo) {
         const parsedWorkInfo = JSON.parse(storedWorkInfo);
         const imageElement = createElement('img');
-        console.log(parsedWorkInfo);
         imageElement.src = parsedWorkInfo.imageUrl;
 
         domElement.appendChild(imageElement);
@@ -66,6 +66,10 @@ function photoFrameContent(domElement) {
     labelElement.addEventListener('click', () => {
         fileInputElement.click()
     });
+    fileInputElement.addEventListener('change', () => {
+        isInputFilled(fileInputElement);
+        isFormComplete();
+    });
 
     fileInputElement.addEventListener('change', () => {
         const [file] = fileInputElement.files;
@@ -74,9 +78,10 @@ function photoFrameContent(domElement) {
         }
         imageElement.src = URL.createObjectURL(file);
         imageElement.style = '';
-        iconElement.remove();
-        labelElement.remove();
-        paragraphElement.remove();
+        const toHide = [iconElement, labelElement, paragraphElement];
+        for (const e of toHide) {
+            e.style = 'display:none';
+        }
     })
     
     domElement.appendChild(imageElement);
@@ -100,6 +105,11 @@ function photoFormContent(domElement) {
     titleInput.name = 'title';
     titleInput.id = 'title';
 
+    titleInput.addEventListener('change', () => {
+        isInputFilled(titleInput);
+        isFormComplete();
+    });
+
     const categoryLabel = createElement('label');
     categoryLabel.for = 'category';
     categoryLabel.innerText = 'Catégorie';
@@ -107,6 +117,11 @@ function photoFormContent(domElement) {
     for (const cat of workCategories) {
         selectAddOption(cat, categorySelect);
     }
+
+    categorySelect.addEventListener('change', () => {
+        isInputFilled(categorySelect);
+        isFormComplete();
+    });
 
     const storedWorkInfo = localStorage.getItem('workInfo');
     if (storedWorkInfo) {
@@ -127,6 +142,42 @@ function selectAddOption(optValue, selectElement) {
     option.text = optValue;
 
     selectElement.add(option, null);
+}
+
+function isFormComplete() {
+    const buttonElement = document.querySelector('#submit-work');
+    console.log(buttonElement);
+    const filledInputs = document.querySelectorAll('.filled');
+    console.log(filledInputs);
+
+    if (filledInputs.length === 3) {
+        buttonElement.classList.add('ready');
+        return
+    }
+    if (buttonElement.classList.contains('ready')) {
+        buttonElement.classList.remove('ready');
+    }
+}
+
+function isInputFilled(formInputElement){
+    const hasFilledClass = formInputElement.classList.contains('filled')
+
+    if ((formInputElement.value !== '' || formInputElement.files) && !hasFilledClass) {
+        toggleFilledClass(formInputElement);
+        return;
+    }
+    if (hasFilledClass) {
+        toggleFilledClass(formInputElement);
+    }
+}
+
+function toggleFilledClass(domElement) {
+    const classList = domElement.classList;
+    if (classList.contains('filled')) {
+        classList.remove('filled');
+        return
+    }
+    classList.add('filled');
 }
 
 export { modal2CreateContent }

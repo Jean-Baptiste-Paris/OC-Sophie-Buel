@@ -435,3 +435,6 @@ footer nav ul {
 #file-input {
 	display: none;
 }
+#submit-work.ready {
+	background-color: var(--main-highlight-color);
+}

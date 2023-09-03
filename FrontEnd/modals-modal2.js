@@ -4,6 +4,7 @@ import { workCategories } from "./config.js";
 
 const photoFrameIconClasses = ['fa-regular', 'fa-image'];
 
+
 function modal2CreateContent(modalContentWrapper){
     if (!modalContentWrapper) {
         throw new Error("Paramètre non défini");
@@ -46,15 +47,42 @@ function photoFrameContent(domElement) {
         return
     }
 
+    const imageElement = createElement('img');
+    imageElement.id = 'img-preview';
+    imageElement.src = '#';
+    imageElement.style = 'display:none';
     const iconElement = createFaIcon(photoFrameIconClasses);
-    const buttonElement = createElement('button');
-    buttonElement.id = 'btn-add-photo';
-    buttonElement.innerText = '+ Ajouter photo';
+    const labelElement = createElement('label');
+    labelElement.id = 'btn-add-photo'
+    labelElement.for = 'file-input';
+    labelElement.innerText = '+ Ajouter photo';
+    const fileInputElement = createElement('input');
+    fileInputElement.type = 'file';
+    fileInputElement.accept = 'image/*';
+    fileInputElement.id = 'file-input';
     const paragraphElement = createElement('p');
     paragraphElement.innerText = 'jpg, png : 4mo max';
 
+    labelElement.addEventListener('click', () => {
+        fileInputElement.click()
+    });
+
+    fileInputElement.addEventListener('change', () => {
+        const [file] = fileInputElement.files;
+        if (!file) {
+            return;
+        }
+        imageElement.src = URL.createObjectURL(file);
+        imageElement.style = '';
+        iconElement.remove();
+        labelElement.remove();
+        paragraphElement.remove();
+    })
+    
+    domElement.appendChild(imageElement);
     domElement.appendChild(iconElement);
-    domElement.appendChild(buttonElement);
+    domElement.appendChild(labelElement);
+    domElement.appendChild(fileInputElement);
     domElement.appendChild(paragraphElement);
    
 }

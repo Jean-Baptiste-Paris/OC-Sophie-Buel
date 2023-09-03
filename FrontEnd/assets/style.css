@@ -297,7 +297,9 @@ label{
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type="submit"], #login button, .modal button{
+input[type="submit"],
+#login button,
+.modal button {
 	font-family: 'Syne';
 	font-weight: 700;
 	color: var(--bg-color-2);
@@ -380,7 +382,8 @@ footer nav ul {
 .modal-gallery figcaption {
 	cursor: pointer;
 }
-.modal button{
+.modal button,
+#photo-frame label {
 	border-width: 0;
 	padding: 10px;
 	margin-top: 10px;
@@ -391,7 +394,7 @@ footer nav ul {
 #photo-frame {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: space-evenly;
 	align-items: center;
 	height: 20vh;
 	width: 100%;
@@ -406,14 +409,15 @@ footer nav ul {
 	color: #CBD6DC;
 	font-size: 60px;
 }
-#btn-add-photo{
+#photo-frame label {
 	color: #306685;
 	font-family: unset;
 	font-weight: unset;
-	margin-top: 20px;
+	margin: unset;
+	border-radius: 60px;
+	cursor: pointer;
 }
 #photo-frame p{
-	padding-top: 10px;
 	font-size: x-small;
 }
 #photo-form {
@@ -424,6 +428,10 @@ footer nav ul {
 #photo-form :first-child{
 	margin-top: unset;
 }
-#modal2 button {
+#modal2 button,
+#photo-frame label {
 	background-color: #CBD6DC;
+}
+#file-input {
+	display: none;
 }

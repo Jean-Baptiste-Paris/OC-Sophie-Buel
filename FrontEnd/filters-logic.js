@@ -7,12 +7,19 @@ function setupFilterListeners(works, galleryElement) {
     filtersCategory.forEach(filter => {
         const filterButton = filter.button;
         if (!filterButton) return console.error("Erreur dans setupFilterListeners : élément de filtre manquant.");
-        filterButton.addEventListener("click", () => {
-            toggleFilterButtons(filterButton);
-            const filteredWorks = filter.categoryId ? filterWorksByCategory(works, filter.categoryId) : works;
-            createWorkCards(filteredWorks, galleryElement);
-        });
+
+        filterButton.addEventListener("click", event => handleFilterButtonClick(event, works, galleryElement, filter));
+        
+        window.addEventListener("beforeunload", () => {
+            removeEventListener("click", event => handleFilterButtonClick(event, works, galleryElement, filter))
+        })
     });
+}
+
+const handleFilterButtonClick = (event, works, galleryElement, filter) => {
+    toggleFilterButtons(event.target);
+    const filteredWorks = filter.categoryId ? filterWorksByCategory(works, filter.categoryId) : works;
+    createWorkCards(filteredWorks, galleryElement);
 }
 
 function filterWorksByCategory(works, categoryId) {

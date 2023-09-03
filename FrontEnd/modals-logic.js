@@ -14,21 +14,25 @@ function linkModal(linkedElement, modalId, workInfo = null) {
 
 function addCloseEvent(DOMelement, modalElement) {
     DOMelement.addEventListener('click', () => {
-        modalElement.remove()
-        localStorage.clear();
+        closeModal(modalElement);
     });
 }
 
 function addBackEvent(DOMelement, modalElement) {
     DOMelement.addEventListener('click', () => {
-        modalElement.remove()
-        localStorage.clear();
+        closeModal(modalElement);
         openModal('modal1');
     });
+}
+
+function closeModal(modalElement) {
+    modalElement.remove()
+    localStorage.clear();
 }
 
 export { 
     linkModal,
     addCloseEvent,
-    addBackEvent
+    addBackEvent,
+    closeModal
 };

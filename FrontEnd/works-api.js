@@ -1,6 +1,6 @@
 //api.js
 import { API_URLS, categoryIds } from './config.js';
-import { initIndex } from './index-init.js';
+import { initGalleries } from './galleries.js';
 
 const WORKS_URL = API_URLS.WORKS;
 
@@ -31,7 +31,7 @@ async function postWork(workObject) {
             method: 'POST',
             headers: {
                 'accept': 'application/json',
-                'Authorization': `Bearer ${sessionStorage['userToken']}`, // Utilisez "Bearer" suivi du jeton
+                'Authorization': `Bearer ${sessionStorage['userToken']}`,
             },
             body: formData,
         });
@@ -57,7 +57,7 @@ async function handlePostWorkResponse(response) {
             for (const modal of activeModals){
                 modal.remove();
             }
-            initIndex();
+            initGalleries();
             break;
         case 401: // Erreur d'autorisation
             console.error("Erreur d'autorisation : L'utilisateur n'est pas authentifié.");
@@ -73,8 +73,51 @@ async function handlePostWorkResponse(response) {
     }
 }
 
+async function deleteWork(workObject){
+    try {
+        const workId = workObject.id;
+        const DELETE_URL = WORKS_URL + '/' + workId;
+        const response = await fetch(DELETE_URL, {
+            method: 'DELETE',
+            headers: {
+                'accept': '*/*',
+                'Authorization': `Bearer ${sessionStorage['userToken']}`,
+            }
+        });
+
+        if (!response.ok) {
+            console.error("Erreur HTTP lors de l'envoi des informations du projet :", response.status, response.statusText);
+            throw new Error("Erreur lors de l'envoi du projet.");
+        }
+
+        handleDeleteWorkResponse(response);
+    } catch (error) {
+        console.error("Une erreur s'est produite lors de l'envoi des informations du projet :", error);
+        throw error;
+    }
+}
+
+async function handleDeleteWorkResponse(response) {
+    switch (response.status) {
+        case 204:
+        case 200: // Succès
+            console.log("Projet supprimé avec succès.");
+            initGalleries();
+            break;
+        case 401: // Erreur d'autorisation
+            console.error("Erreur d'autorisation : L'utilisateur n'est pas authentifié.");
+            break;
+        case 500: // Erreur serveur
+            console.error("Erreur serveur : Une erreur interne du serveur s'est produite.");
+            break;
+        default:
+            console.error("Réponse inattendue du serveur avec le code :", response.status);
+    }
+}
+
 export {
     fetchWorks,
     postWork,
-    handlePostWorkResponse
+    handlePostWorkResponse,
+    deleteWork
 };

@@ -392,6 +392,7 @@ footer nav ul {
 	padding: var(--trash-radius);
 	border-radius: var(--trash-radius);
 }
+#modal1 figure i,
 .modal-gallery figcaption {
 	cursor: pointer;
 }

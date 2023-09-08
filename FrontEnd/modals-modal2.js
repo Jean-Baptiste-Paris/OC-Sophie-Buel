@@ -28,6 +28,10 @@ function modal2CreateContent(modalContentWrapper){
     submitButton.value = 'submit';
     submitButton.innerText = 'Valider';
 
+    photoForm.addEventListener('change', () => {
+        isFormComplete() ? submitButton.classList.add('ready') : submitButton.classList.remove('ready');
+    });
+
     submitButton.addEventListener('click', (event) => {
         event.preventDefault()
         sendWorkData(submitButton);
@@ -74,7 +78,6 @@ function photoFrameContent(domElement) {
     });
     fileInputElement.addEventListener('change', () => {
         isInputFilled(fileInputElement);
-        isFormComplete();
     });
 
     fileInputElement.addEventListener('change', () => {
@@ -113,7 +116,6 @@ function photoFormContent(domElement) {
 
     titleInput.addEventListener('change', () => {
         isInputFilled(titleInput);
-        isFormComplete();
     });
 
     const categoryLabel = createElement('label');
@@ -126,7 +128,6 @@ function photoFormContent(domElement) {
 
     categorySelect.addEventListener('change', () => {
         isInputFilled(categorySelect);
-        isFormComplete();
     });
 
     const storedWorkInfo = localStorage.getItem('workInfo');
@@ -151,29 +152,24 @@ function selectAddOption(optValue, selectElement) {
 }
 
 function isFormComplete() {
-    const buttonElement = document.querySelector('#submit-work');
     const filledInputs = document.querySelectorAll('.filled');
 
-    if (filledInputs.length === 3) {
-        buttonElement.classList.add('ready');
+    return (filledInputs.length === 3);
+}
+
+function isInputFilled(formInputElement) {
+    const hasFilledClass = formInputElement.classList.contains('filled');
+    const isEmpty = formInputElement.value === '' && !formInputElement.files;
+
+    if (isEmpty && hasFilledClass) {
+        toggleFilledClass(formInputElement);
         return
     }
-    if (buttonElement.classList.contains('ready')) {
-        buttonElement.classList.remove('ready');
-    }
-}
-
-function isInputFilled(formInputElement){
-    const hasFilledClass = formInputElement.classList.contains('filled')
-
-    if ((formInputElement.value !== '' || formInputElement.files) && !hasFilledClass) {
-        toggleFilledClass(formInputElement);
-        return;
-    }
-    if (hasFilledClass) {
+    if (!isEmpty && !hasFilledClass) {
         toggleFilledClass(formInputElement);
     }
 }
+
 
 function toggleFilledClass(domElement) {
     const classList = domElement.classList;

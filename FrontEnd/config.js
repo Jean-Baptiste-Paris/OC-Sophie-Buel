@@ -22,6 +22,7 @@ const workCategories = [ '','Objets', 'Appartements', 'Hotels & restaurants'];
 const modifierElementIconClasses = ['fa-sharp', 'fa-regular', 'fa-pen-to-square'];
 const closeIconClasses = ['fa-solid', 'fa-xmark'];
 const backIconClasses = ['fa-solid', 'fa-arrow-left'];
+const deleteIconClasses = ['fa-solid', 'fa-trash-can'];
 
 export {
     API_URLS,
@@ -31,5 +32,6 @@ export {
     workCategories,
     modifierElementIconClasses,
     closeIconClasses,
-    backIconClasses
+    backIconClasses,
+    deleteIconClasses
 };

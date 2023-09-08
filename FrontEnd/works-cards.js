@@ -1,7 +1,8 @@
-import { createElement } from "./global-create.js";
+//work-cards.js
+import { deleteIconClasses } from "./config.js";
+import { createElement, createFaIcon } from "./global-create.js";
 import { linkModal, addCloseEvent } from "./modals-logic.js";
 
-//work-cards.js
 function createWorkCards(works, galleryElement) {
     if (!galleryElement) return console.error("Erreur dans generateWorks : galleryElement n'est pas défini");
     galleryElement.innerHTML = "";
@@ -20,6 +21,8 @@ function createWorkCards(works, galleryElement) {
         workElement.appendChild(captionElement);
         
         if (galleryElement.classList.contains('modal-gallery')){
+            const iconElement = createFaIcon(deleteIconClasses);
+            workElement.insertBefore(iconElement, imageElement);
             linkModal(captionElement, 'modal2', work);
         }
     }

@@ -53,6 +53,7 @@ table {
 	--bg-color-3 : black;
 	--main-highlight-color: #1D6154;
 	--highlight-color-2: #B1663C;
+	--trash-radius: 5px;
 }
 body {
 	font-family: 'Work Sans' ;
@@ -378,6 +379,18 @@ footer nav ul {
 	padding: 30px 0;
 	border-bottom: 1px solid lightgray;
 	font-size: smaller;
+}
+#modal1 figure{
+	position: relative;
+}
+#modal1 figure i {
+	position: absolute;
+	top: var(--trash-radius);
+	right: var(--trash-radius);
+	color: white;
+	background: rgba(0, 0, 0, 0.6);
+	padding: var(--trash-radius);
+	border-radius: var(--trash-radius);
 }
 .modal-gallery figcaption {
 	cursor: pointer;

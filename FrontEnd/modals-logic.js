@@ -1,6 +1,8 @@
 //modals-logic.js
 import { openModal } from "./modals-display.js";
 
+let isModalClickListenerAdded = false;
+
 function linkModal(linkedElement, modalId, workInfo = null) {
     if (!(linkedElement && modalId)) return;
     linkedElement.addEventListener('click', event => {
@@ -14,25 +16,53 @@ function linkModal(linkedElement, modalId, workInfo = null) {
 
 function addCloseEvent(DOMelement, modalElement) {
     DOMelement.addEventListener('click', () => {
-        closeModal(modalElement);
+        closeModals();
     });
 }
 
 function addBackEvent(DOMelement, modalElement) {
     DOMelement.addEventListener('click', () => {
-        closeModal(modalElement);
+        closeModals();
         openModal('modal1');
     });
 }
 
-function closeModal(modalElement) {
-    modalElement.remove()
-    localStorage.clear();
+function closeModals() {
+    const activeModals = document.querySelectorAll('.modal');
+    for (const modal of activeModals){
+        modal.remove();
+        removeModalClickListener()
+    }
+}
+
+function addModalClickListener() {
+    if (!isModalClickListenerAdded) {
+        document.addEventListener('click', handleModalClick);
+        isModalClickListenerAdded = true;
+    }
+}
+
+function removeModalClickListener() {
+    if (isModalClickListenerAdded) {
+        document.removeEventListener('click', handleModalClick);
+        isModalClickListenerAdded = false;
+    }
+}
+
+function handleModalClick(event) {
+    console.log('event entered');
+    const target = event.target;
+    const isModal = target.classList.contains('modal');
+    const isWrapper = target.classList.contains('modal-wrapper');
+    if (target && isModal && !isWrapper) {
+        closeModals();
+    }
 }
 
 export { 
     linkModal,
     addCloseEvent,
     addBackEvent,
-    closeModal
+    closeModals,
+    addModalClickListener
 };

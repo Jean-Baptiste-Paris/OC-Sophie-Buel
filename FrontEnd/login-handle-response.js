@@ -2,9 +2,14 @@
 async function handleLoginResponse(response) {
     switch (response.status) {
         case 200: // utilisateur valide
-            sessionStorage.setItem('userId', response.userId);
-            sessionStorage.setItem('userToken', response.token);
-            window.location.href = './index.html';
+            try {
+                const data = await response.json();
+                sessionStorage.setItem('userId', data.userId);
+                sessionStorage.setItem('userToken', data.token);
+                window.location.href = './index.html';
+            } catch (error) {
+                throw error;
+            }
             break;
         case 401: // erreur d'autorisation
         case 404: // utilisateur non trouvé
@@ -13,6 +18,7 @@ async function handleLoginResponse(response) {
             break;
     }
 }
+
 
 async function incorrectUserMessage() {
     const message = document.createElement('p');

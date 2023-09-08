@@ -1,11 +1,12 @@
 //api.js
-import { API_URLS } from './config.js';
+import { API_URLS, categoryIds } from './config.js';
+import { initIndex } from './index-init.js';
 
-const GET_WORKS_URL = API_URLS.GET_WORKS;
+const WORKS_URL = API_URLS.WORKS;
 
 async function fetchWorks() {
     try {
-        const response = await fetch(GET_WORKS_URL);
+        const response = await fetch(WORKS_URL);
         return await response.json();
     } catch (error) {
         console.error("Une erreur s'est produite lors de la récupération des travaux :", error);
@@ -13,6 +14,67 @@ async function fetchWorks() {
     }
 }
 
+async function postWork(workObject) {
+    try {
+        const formData = new FormData();
+        formData.append('image', workObject.image, workObject.image.name);
+        formData.append('title', workObject.title);
+        
+        const categoryId = categoryIds.find(category => category[workObject.category]);
+        if (categoryId) {
+            formData.append('category', categoryId[workObject.category]);
+        } else {
+            throw new Error("Catégorie non trouvée dans la table de correspondance.");
+        }
+
+        const response = await fetch(WORKS_URL, {
+            method: 'POST',
+            headers: {
+                'accept': 'application/json',
+                'Authorization': `Bearer ${sessionStorage['userToken']}`, // Utilisez "Bearer" suivi du jeton
+            },
+            body: formData,
+        });
+
+        if (!response.ok) {
+            console.error("Erreur HTTP lors de l'envoi des informations du projet :", response.status, response.statusText);
+            throw new Error("Erreur lors de l'envoi du projet.");
+        }
+
+        return response;
+    } catch (error) {
+        console.error("Une erreur s'est produite lors de l'envoi des informations du projet :", error);
+        throw error;
+    }
+}
+
+async function handlePostWorkResponse(response) {
+    switch (response.status) {
+        case 201: // Créé avec succès
+            const data = await response.json();
+            console.log("Projet créé avec succès. ID du projet :", data.id);
+            const activeModals = document.querySelectorAll('.modal');
+            for (const modal of activeModals){
+                modal.remove();
+            }
+            initIndex();
+            break;
+        case 401: // Erreur d'autorisation
+            console.error("Erreur d'autorisation : L'utilisateur n'est pas authentifié.");
+            break;
+        case 404: // Ressource non trouvée
+            console.error("Ressource non trouvée : L'URL de l'API est incorrecte ou la ressource n'existe pas.");
+            break;
+        case 500: // Erreur serveur
+            console.error("Erreur serveur : Une erreur interne du serveur s'est produite.");
+            break;
+        default:
+            console.error("Réponse inattendue du serveur avec le code :", response.status);
+    }
+}
+
 export {
     fetchWorks,
+    postWork,
+    handlePostWorkResponse
 };

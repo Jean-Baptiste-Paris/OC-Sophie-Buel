@@ -32,7 +32,6 @@ async function attemptLogin(user) {
     switch (response.status) {
         case 200: // utilisateur valide, reception de l'element loggedUser
             loggedUser = await response.json();
-            console.log(loggedUser);
             sessionStorage.setItem('userId', loggedUser.userId);
             sessionStorage.setItem('userToken', loggedUser.token);
             window.location.href = '/index.html';

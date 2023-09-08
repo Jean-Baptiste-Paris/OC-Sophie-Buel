@@ -1,6 +1,7 @@
 //modals-modal.js
 import { createElement, createFaIcon } from "./global-create.js";
 import { workCategories } from "./config.js";
+import { postWork, handlePostWorkResponse } from "./works-api.js";
 
 const photoFrameIconClasses = ['fa-regular', 'fa-image'];
 
@@ -26,6 +27,11 @@ function modal2CreateContent(modalContentWrapper){
     submitButton.id = 'submit-work';
     submitButton.value = 'submit';
     submitButton.innerText = 'Valider';
+
+    submitButton.addEventListener('click', (event) => {
+        event.preventDefault()
+        sendWorkData(submitButton);
+    })
 
     modalContentWrapper.appendChild(photoFrame);
     modalContentWrapper.appendChild(photoForm);
@@ -146,9 +152,7 @@ function selectAddOption(optValue, selectElement) {
 
 function isFormComplete() {
     const buttonElement = document.querySelector('#submit-work');
-    console.log(buttonElement);
     const filledInputs = document.querySelectorAll('.filled');
-    console.log(filledInputs);
 
     if (filledInputs.length === 3) {
         buttonElement.classList.add('ready');
@@ -178,6 +182,27 @@ function toggleFilledClass(domElement) {
         return
     }
     classList.add('filled');
+}
+
+async function sendWorkData(DOMButton) {
+    if (! DOMButton.classList.contains('ready')) {
+        return
+    }
+    const imageInput = document.querySelector('#file-input');
+    const titleInput = document.querySelector('#title');
+    const catInput = document.querySelector('select');
+    const newWork = {
+        'image': imageInput.files[0],
+        'title': titleInput.value,
+        'category': catInput.value
+    };
+    try {
+        const response = await postWork(newWork);
+        handlePostWorkResponse(response);
+    } catch (error) {
+        console.error("Une erreur s'est produite lors de l'envoi des informations du projet :", error);
+    }
+
 }
 
 export { modal2CreateContent }

@@ -19,4 +19,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-export {currentWorks}
+export {currentWorks, initIndex}

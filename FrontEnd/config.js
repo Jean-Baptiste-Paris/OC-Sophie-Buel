@@ -1,6 +1,6 @@
 // config.js
 const API_URLS = {
-    GET_WORKS: 'http://localhost:5678/api/works',
+    WORKS: 'http://localhost:5678/api/works',
     POST_LOGIN: 'http://localhost:5678/api/users/login'
 };
 const filtersCategory = [
@@ -8,6 +8,11 @@ const filtersCategory = [
     { button: document.querySelector("#btn-objets"), categoryId: 1 },
     { button: document.querySelector("#btn-appart"), categoryId: 2 },
     { button: document.querySelector("#btn-hotels-restos"), categoryId: 3 }
+];
+const categoryIds = [
+    { 'Objets' : 1 },
+    { 'Appartements' : 2 },
+    { 'Hôtels & restaurants' : 3 }
 ];
 const modalsData = {
     "modal1" : "Galerie photo",
@@ -21,6 +26,7 @@ const backIconClasses = ['fa-solid', 'fa-arrow-left'];
 export {
     API_URLS,
     filtersCategory,
+    categoryIds,
     modalsData,
     workCategories,
     modifierElementIconClasses,

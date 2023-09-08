@@ -68,7 +68,6 @@ function linkModal(element, modal) {
         event.preventDefault();
         if (element.tagName === "button") element.style.display = 'none';
         const target = document.querySelector(modal);
-        console.log("target : "+ target);
         target.style.display = null;
     });
     

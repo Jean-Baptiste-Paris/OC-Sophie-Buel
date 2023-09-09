@@ -29,6 +29,7 @@ function addBackEvent(DOMelement, modalElement) {
 
 function closeModals() {
     const activeModals = document.querySelectorAll('.modal');
+    localStorage.removeItem('workInfo');
     for (const modal of activeModals){
         modal.remove();
         removeModalClickListener()

@@ -1,6 +1,7 @@
 //api.js
 import { API_URLS, categoryIds } from './config.js';
 import { initGalleries } from './galleries.js';
+import { closeModals } from './modals-logic.js';
 
 const WORKS_URL = API_URLS.WORKS;
 
@@ -53,10 +54,7 @@ async function handlePostWorkResponse(response) {
         case 201: // Créé avec succès
             const data = await response.json();
             console.log("Projet créé avec succès. ID du projet :", data.id);
-            const activeModals = document.querySelectorAll('.modal');
-            for (const modal of activeModals){
-                modal.remove();
-            }
+            closeModals();
             initGalleries();
             break;
         case 401: // Erreur d'autorisation
